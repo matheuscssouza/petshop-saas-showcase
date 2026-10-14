@@ -20,3 +20,7 @@
 - **Fonte da verdade**: o SaaS manda; Google Agenda é espelho (evita loops de sync).
 - **Dados sensíveis**: prontuário imutável após fechado (correção por adendo), RBAC por perfil, auditoria.
 - **Pagamentos**: webhook autenticado, idempotente, conciliação diária.
+
+## Isolamento de tenants em duas camadas
+1. **ORM:** manager escopado pelo tenant ativo; sem tenant, a consulta falha (fail-closed).
+2. **Banco:** Row-Level Security com `FORCE`, policy lendo `app.tenant_id` da sessão; a aplicação conecta com papel sem superuser. Um teste-guarda reprova na CI qualquer modelo de tenant sem policy.
