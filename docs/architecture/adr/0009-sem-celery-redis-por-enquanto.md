@@ -1,6 +1,6 @@
 # ADR 0009 — Sem fila (Celery/Redis) por enquanto
 
-Status: aceita (revisar na Fase 2)
+Status: parcialmente substituída pelo ADR 0011 (fila de mensagens = outbox no PostgreSQL)
 
 ## Contexto
 O panorama recomenda fila para integrações externas. Hoje a única chamada externa é a criação do Pix (síncrona, timeout de 15 s) e o webhook (processamento curto).
