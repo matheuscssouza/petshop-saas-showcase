@@ -24,3 +24,6 @@
 ## Isolamento de tenants em duas camadas
 1. **ORM:** manager escopado pelo tenant ativo; sem tenant, a consulta falha (fail-closed).
 2. **Banco:** Row-Level Security com `FORCE`, policy lendo `app.tenant_id` da sessão; a aplicação conecta com papel sem superuser. Um teste-guarda reprova na CI qualquer modelo de tenant sem policy.
+
+## Qualidade verificada automaticamente (CI)
+Lint, regra de camadas entre módulos (import-linter), migrations em dia, cobertura mínima de 85%, auditoria de dependências (pip-audit), análise estática de segurança (bandit), varredura de segredos (gitleaks) e build da imagem de produção (usuário não-root, `check --deploy` sem avisos).
